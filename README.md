@@ -1,1 +1,1 @@
-# openshift-disconnected-install-golden-standard-config-files
+This repo holds my golden standard OpenShift disconnected install configs, organized by version. Each version folder contains everything needed for a typical disconnected deployment, including imageset configs, agent configs, and install configs. These are tested, reusable starting points I use for customer installs and internal demos. Feel free to fork, adapt, or contribute improvements.
