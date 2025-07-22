@@ -1,0 +1,397 @@
+apiVersion: v1beta1
+kind: AgentConfig
+metadata:
+  name: dannys-cluster
+rendezvousIP: X.X.X.161  # Using ocp-control-01 as rendezvous
+additionalNTPSources:
+- X.X.X.5
+hosts:
+
+- hostname: ocp-control-01.dannys-cluster.example.mil
+  role: master
+  interfaces:
+  - name: eno1
+    macAddress: 
+  - name: eno2
+    macAddress: 
+  - name: eno3
+    macAddress: 
+  - name: eno5np0
+    macAddress:  
+  - name: eno6np1
+    macAddress:  
+  rootDeviceHints:
+    deviceName: /dev/sdl # Need to confirm!
+  networkConfig:
+    interfaces:
+      - name: eno1
+        type: ethernet
+        state: up
+        mac-address: 12:34:56:X:Y:Z
+
+        ipv4:
+          enabled: true
+          address:
+            - ip: 
+              prefix-length: 24
+          dhcp: false
+
+      - name: eno2
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+      - name: eno3
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+      - name: eno5np0
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+      - name: eno6np1
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+    dns-resolver:
+      config:
+        server:
+          - X.X.X.254
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: X.X.X.254  # Replace with actual default gateway if different
+          next-hop-interface: eno1
+          table-id: 254
+
+
+- hostname: ocp-control-02.dannys-cluster.example.mil
+  role: master
+  interfaces:
+  - name: eno1
+    macAddress: 
+  - name: eno2
+    macAddress: 
+  - name: eno3
+    macAddress: 
+  - name: eno5np0
+    macAddress: 
+  - name: eno6np1
+    macAddress: 
+  rootDeviceHints:
+    deviceName: /dev/sdl
+  networkConfig:
+    interfaces:
+      - name: eno1
+        type: ethernet
+        state: up
+        mac-address: 12:34:56:X:Y:Z
+
+        ipv4:
+          enabled: true
+          address:
+            - ip: 
+              prefix-length: 24
+          dhcp: false
+
+      - name: eno2
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+      - name: eno3
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+      - name: eno5np0
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+      - name: eno6np1
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+    dns-resolver:
+      config:
+        server:
+          - X.X.X.254
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: X.X.X.254  # Replace with actual default gateway if different
+          next-hop-interface: eno1
+          table-id: 254
+
+
+- hostname: ocp-control-03.dannys-cluster.example.mil
+  role: master
+  interfaces:
+  - name: eno1
+    macAddress: 
+  - name: eno2
+    macAddress: 
+  - name: eno3
+    macAddress: 
+  - name: eno5np0
+    macAddress: 
+  - name: eno6np1
+    macAddress: 
+  rootDeviceHints:
+    deviceName: /dev/sdl
+  networkConfig:
+    interfaces:
+      - name: eno1
+        type: ethernet
+        state: up
+        mac-address: 12:34:56:X:Y:Z
+
+        ipv4:
+          enabled: true
+          address:
+            - ip: X.X.X.163
+              prefix-length: 24
+          dhcp: false
+
+      - name: eno2
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+      - name: eno3
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+      - name: eno5np0
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+      - name: eno6np1
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+    dns-resolver:
+      config:
+        server:
+          - X.X.X.254
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: X.X.X.254  # Replace with actual default gateway if different
+          next-hop-interface: eno1
+          table-id: 254
+
+
+- hostname: ocp-compute-01.dannys-cluster.example.mil
+  role: worker
+  interfaces:
+  - name: eno1
+    macAddress: 
+  - name: eno2
+    macAddress: 
+  - name: eno3
+    macAddress: 
+  - name: eno5np0
+    macAddress: 
+  - name: eno6np1
+    macAddress: 
+  rootDeviceHints:
+    deviceName: /dev/sdl
+  networkConfig:
+    interfaces:
+      - name: eno1
+        type: ethernet
+        state: up
+        mac-address: 12:34:56:X:Y:Z
+
+        ipv4:
+          enabled: true
+          address:
+            - ip: X.X.X.164
+              prefix-length: 24
+          dhcp: false
+
+      - name: eno2
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+      - name: eno3
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+      - name: eno5np0
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+      - name: eno6np1
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+    dns-resolver:
+      config:
+        server:
+          - X.X.X.254
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: X.X.X.254  # Replace with actual default gateway if different
+          next-hop-interface: eno1
+          table-id: 254
+
+
+- hostname: ocp-compute-02.dannys-cluster.example.mil
+  role: worker
+  interfaces:
+  - name: eno1
+    macAddress: 
+  - name: eno2
+    macAddress: 
+  - name: eno3
+    macAddress: 
+  - name: eno5np0
+    macAddress: 
+  - name: eno6np1
+    macAddress: 
+  rootDeviceHints:
+    deviceName: /dev/sdl
+  networkConfig:
+    interfaces:
+      - name: eno1
+        type: ethernet
+        state: up
+        mac-address: 12:34:56:X:Y:Z
+
+        ipv4:
+          enabled: true
+          address:
+            - ip: X.X.X.165
+              prefix-length: 24
+          dhcp: false
+
+      - name: eno2
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+      - name: eno3
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+      - name: eno5np0
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+      - name: eno6np1
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+    dns-resolver:
+      config:
+        server:
+          - X.X.X.254
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: X.X.X.254  # Replace with actual default gateway if different
+          next-hop-interface: eno1
+          table-id: 254
+
+
+- hostname: ocp-compute-03.dannys-cluster.example.mil
+  role: worker
+  interfaces:
+  - name: eno1
+    macAddress: 
+  - name: eno2
+    macAddress: 
+  - name: eno3
+    macAddress: 
+  - name: eno5np0
+    macAddress: 
+  - name: eno6np1
+    macAddress: 
+  rootDeviceHints:
+    deviceName: /dev/sdl
+  networkConfig:
+    interfaces:
+      - name: eno1
+        type: ethernet
+        state: up
+        mac-address: 12:34:56:X:Y:Z
+
+        ipv4:
+          enabled: true
+          address:
+            - ip: X.X.X.166
+              prefix-length: 24
+          dhcp: false
+
+      - name: eno2
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+      - name: eno3
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+      - name: eno5np0
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+      - name: eno6np1
+        type: ethernet
+        state: down
+        mac-address: 12:34:56:X:Y:Z
+        ipv4:
+          enabled: false
+    dns-resolver:
+      config:
+        server:
+          - X.X.X.254
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: X.X.X.254  # Replace with actual default gateway if different
+          next-hop-interface: eno1
+          table-id: 254
