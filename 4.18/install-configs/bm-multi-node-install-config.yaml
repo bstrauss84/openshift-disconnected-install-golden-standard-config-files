@@ -1,0 +1,43 @@
+apiVersion: v1
+baseDomain: example.mil
+metadata:
+  name: dannys-cluster
+compute:
+  - name: worker
+    replicas: 3
+    architecture: amd64
+controlPlane:
+    name: master
+    replicas: 3
+    architecture: amd64
+networking:
+  networkType: OVNKubernetes
+  machineNetwork:
+  - cidr: X.X.X.0/24
+  serviceNetwork:
+  - 172.30.0.0/16
+  clusterNetwork:
+  - cidr: 10.128.0.0/14
+    hostPrefix: 23
+platform:
+  baremetal:
+    apiVIPs:
+    - X.X.X.150
+    ingressVIPs:
+    - X.X.X.151
+    provisioningNetwork: Disabled
+fips: false 
+pullSecret: '{"auths":{"mirror-registry.example.mil:8443":{"auth":""}}}'
+sshKey: |
+  ssh-rsa ......
+imageContentSources:
+  - mirrors:
+    - mirror-registry.example.mil:8443/openshift/release
+    source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
+  - mirrors:
+    - mirror-registry.example.mil:8443/openshift/release-images
+    source: quay.io/openshift-release-dev/ocp-release
+additionalTrustBundle: |
+  -----BEGIN CERTIFICATE-----
+  -----END CERTIFICATE-----
+additionalTrustBundlePolicy: Always
